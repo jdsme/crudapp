@@ -9,7 +9,6 @@ if (isset($_POST["submit"])) {
     $is_admin = 1;
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
-    $username = $_POST["username"];
     $password = $_POST["password"];
     $email = $_POST["email"];
 

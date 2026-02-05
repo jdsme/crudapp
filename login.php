@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Database credentials
     $host = 'localhost';
     $db_username = 'root';
-    $db_password = '';
+    $db_password = 'root1234';
     $database = 'test';
     
     // Connect to the database
