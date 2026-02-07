@@ -13,6 +13,66 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC");
 <html>
 <head>    
     <title>Homepage</title>
+    <style>
+         body {
+            background-color: #e9f2f9;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d6efd;
+            margin-top: 20px;
+        }
+
+        .container {
+            width: 90%;
+            margin: 30px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        a, input[type="submit"] {
+            text-decoration: none;
+            color: white;
+            background-color: #0d6efd;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin-right: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        a:hover, input[type="submit"]:hover {
+            background-color: #0b5ed7;
+        }
+
+        .logout {
+            float: right;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <form method="POST" action="add.php">
 <body>
