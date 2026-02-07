@@ -35,85 +35,56 @@ mysqli_close($conn);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
   <title> Admin Registration Form  </title>  
   <style>  
-.error {   
-color: white;  
-    font-family: lato;  
-    background: gainsboro;  
-    display: inline-block;  
-    padding: 2px 10px;  
-}  
-* {  
-    padding: 0;  
-    margin: 0;  
-    box-sizing: border-box;  
-}  
-body {  
-    margin: 50px auto;  
-    text-align: left;  
-    width: 800px;  
-}  
-h1 {  
-    font-family: Arial;  
-  display: block;  
-  font-size: 2rem;  
-  font-weight: bold;  
-  text-align: center;  
-  letter-spacing: 3px;  
-  color: darkblue;  
-    text-transform: uppercase;  
-}  
-label {  
-    width: 150px;  
-    display: inline-block;  
-    text-align: left;  
-    font-size: 1.5rem;  
-    font-family: 'Lato';  
-}  
-input {  
-    border: 1px solid #ccc;  
-    font-size: 1.5rem;  
-    font-weight: 100;  
-    font-family: 'Lato';  
-    padding: 10px;  
-}  
-form {  
-    margin: 25px auto;  
-    padding: 20px;  
-    border: 5px solid #ccc;  
-    width: 500px;  
-    background: #f3e7e9;  
-}  
-div.form-element {  
-    margin: 20px 0;  
-}  
-input[type=submit]::after {    
-  background: #fff;    
-  content: '';    
-  position: absolute;    
-  z-index: -1;    
-}    
-input[type=submit] {    
-  border: 2px solid;    
-  border-radius: 2px;    
-  color: ;    
-  display: block;    
-  font-size: 1em;    
-  font-weight: bold;    
-  margin: 1em auto;    
-  padding: 1em 4em;    
- position: relative;    
-  text-transform: uppercase;    
-}    
-input[type=submit]::before   
-{    
-  background: #fff;    
-  content: '';    
-  position: absolute;    
-  z-index: -1;    
-}    
-input[type=submit]:hover {    
-  color: #1A33FF;    
-}    
+body {
+    background-color: #e9f2f9;
+    font-family: Arial, Helvetica, sans-serif;
+} 
+
+h1 {
+    text-align: center;
+    color: #0d6efd;
+    margin-bottom: 20px;
+}
+
+form {
+    width: 400px;
+    margin: 80px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"], 
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+     background-color: #0b5ed7;
+}
 </style>  
 </head>  
 <body>    
