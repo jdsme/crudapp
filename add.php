@@ -1,22 +1,37 @@
 <?php
 include_once("config.php");
 
-if(isset($_POST['submit'])) {	
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $email = $_POST['email'];
-    $mobile = $_POST['mobile'];
-    $emp_desc = $_POST['emp_desc'];
+$error_message = '';
+
+// Check if the form was actually submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
     
-    // Insert user data into database
-    $result = mysqli_query($conn, "INSERT INTO users(first_name, last_name, email, mobile, emp_desc) VALUES('$first_name','$last_name','$email','$mobile','$emp_desc')");
+    // Use ?? '' to provide an empty string if the key is missing
+    // This prevents the "Undefined array key" and "Deprecated" errors
+    $first_name = mysqli_real_escape_string($conn, $_POST['first_name'] ?? '');
+    $last_name  = mysqli_real_escape_string($conn, $_POST['last_name'] ?? '');
+    $email      = mysqli_real_escape_string($conn, $_POST['email'] ?? '');
+    $mobile     = mysqli_real_escape_string($conn, $_POST['mobile'] ?? '');
+    $emp_desc   = mysqli_real_escape_string($conn, $_POST['emp_desc'] ?? '');
     
-    // Show message when user added
-    echo "<div class='alert alert-success'>User added successfully! Redirecting...</div>";
-    header('Refresh: 1; URL = viewusers.php');
+    // Basic validation: ensure required fields aren't just empty strings
+    if (!empty($first_name) && !empty($email)) {
+        $sql = "INSERT INTO users(first_name, last_name, email, mobile, emp_desc) 
+                VALUES('$first_name', '$last_name', '$email', '$mobile', '$emp_desc')";
+        
+        $result = mysqli_query($conn, $sql);
+        
+        if ($result) {
+            header('Location: viewusers.php');
+            exit(); // Always call exit() after a header redirect
+        } else {
+            $error_message = "Database Error: " . mysqli_error($conn);
+        }
+    } else {
+        $error_message = "Please fill in all required fields.";
+    }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>    
@@ -39,6 +54,12 @@ if(isset($_POST['submit'])) {
     </div>
 
     <div class="form-container">
+        <?php if(!empty($error_message)): ?>
+            <div class="alert alert-error">
+                <?php echo htmlspecialchars($error_message); ?>
+            </div>
+        <?php endif; ?>
+
         <form method="post" action="add.php">
             <h1 class="form-title">Add New User</h1>
             
