@@ -1,57 +1,82 @@
-<html>
-<head>
-	<title>Add Users</title>
+<?php
+include_once("config.php");
+
+if(isset($_POST['submit'])) {	
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['email'];
+    $mobile = $_POST['mobile'];
+    $emp_desc = $_POST['emp_desc'];
+    
+    // Insert user data into database
+    $result = mysqli_query($conn, "INSERT INTO users(first_name, last_name, email, mobile, emp_desc) VALUES('$first_name','$last_name','$email','$mobile','$emp_desc')");
+    
+    // Show message when user added
+    echo "<div class='alert alert-success'>User added successfully! Redirecting...</div>";
+    header('Refresh: 1; URL = viewusers.php');
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Add New User</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-	<a href="index.php">Home</a>
-	<br/><br/>
+    <div class="dashboard-header">
+        <div class="header-content">
+            <a href="viewusers.php" class="logo">
+                <div class="logo-icon">📊</div>
+                User Management
+            </a>
+            <div class="user-info">
+                <span class="user-badge">Administrator</span>
+            </div>
+        </div>
+    </div>
 
-	<form action="add.php" method="post" name="form1">
-		<table width="25%" border="0">
-			<tr> 
-				<td>FirstName</td>
-				<td><input type="text" name="first_name"></td></tr>
+    <div class="form-container">
+        <form method="post" action="add.php">
+            <h1 class="form-title">Add New User</h1>
+            
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" name="first_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" name="last_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="text" name="mobile" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Employee Description</label>
+                <textarea name="emp_desc" placeholder="e.g., Expert in programming and systems analysis" required></textarea>
+            </div>
+            
+            <input type="submit" name="submit" value="Add User" class="btn btn-primary">
+            
+            <div class="text-center mt-3">
+                <a href="viewusers.php" class="home-link">← Back to Dashboard</a>
+            </div>
+        </form>
+    </div>
 
-				<tr>	
-					<td>LastName</td>
-				<td><input type="text" name="last_name"></td>
-			</tr>
-
-			</tr>
-			<tr> 
-				<td>Email</td>
-				<td><input type="text" name="email"></td>
-			</tr>
-			<tr> 
-				<td>Mobile</td>
-				<td><input type="text" name="mobile"></td>
-			</tr>
-			<tr> 
-				<td></td>
-				<td><input type="submit" name="Submit" value="Add"></td>
-			</tr>
-		</table>
-	</form>
-	
-	<?php
-
-	// Check If form submitted, insert form data into users table.
-	if(isset($_POST['Submit'])) {
-		$first_name = $_POST['first_name'];
-		$last_name = $_POST['last_name'];
-		$email = $_POST['email'];
-		$mobile = $_POST['mobile'];
-		
-		// include database connection file
-		include_once("config.php");
-				
-		// Insert user data into table
-		$result = mysqli_query($conn, "INSERT INTO users(first_name,last_name,email,mobile) VALUES('$first_name','$last_name','$email','$mobile')");
-		
-		// Show message when user added
-		echo "User added successfully. <a href='viewusers.php'>View Users</a>";
-	}
-	?>
+    <div class="footer">
+        <p>&copy; 2024 CRUD Dashboard System. All rights reserved.</p>
+    </div>
 </body>
 </html>

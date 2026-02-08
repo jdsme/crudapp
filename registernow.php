@@ -15,11 +15,11 @@ if (isset($_POST["submit"])) {
     $sql = "INSERT INTO users (username, first_name, last_name, password, email) VALUES ('$username', '$firstname','$lastname','$password', '$email')";
     if (mysqli_query($conn, $sql)) {
 
-   echo "<b>Registration successful!<b>";
+   echo "<div class='alert alert-success'>Registration successful! Redirecting to login...</div>";
    header('Refresh: 1; URL = login.php');
 
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "<div class='alert alert-error'>Error: " . mysqli_error($conn) . "</div>";
     }
 }
 
@@ -27,87 +27,63 @@ if (isset($_POST["submit"])) {
 mysqli_close($conn);
 ?>
 
+<!DOCTYPE html>
 <html lang="en">  
 <head>  
-  <meta charset="utf-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
-  <title> Registration Form  </title>  
-  <style>  
-body {
-    background-color: #e9f2f9;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-h1 {
-    text-align: center;
-    color: #0d6efd;
-    margin-bottom: 20px;
-}
-
-form {
-    width: 400px;
-    margin: 80px auto;
-    padding: 25px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #198754; 
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-input[type="submit"]:hover {
-    background-color: #157347;
-}
-</style>  
+    <meta charset="utf-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
+    <title>User Registration | Dashboard</title>  
+    <link rel="stylesheet" href="style.css">
 </head>  
 <body>    
+    <div class="dashboard-header">
+        <div class="header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">👤</div>
+                User Portal
+            </a>
+        </div>
+    </div>
 
+    <div class="form-container">
+        <form method="post" action="">
+            <h1 class="form-title">Register Now</h1>
+            
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" name="firstname" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" name="lastname" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" required>
+            </div>
+            
+            <input type="submit" name="submit" value="Create Account" class="btn btn-success">
+            
+            <div class="text-center mt-3">
+                <a href="login.php" style="color: var(--primary-light); text-decoration: none; font-weight: 600;">Already have an account? Login</a>
+            </div>
+        </form>
+    </div>
 
-<form method="post" action="">
-<h1>Register Now</h1><br><br>
-
-    <label>Username:</label>
-    <input type="text" name="username"><br>
-    <label>Firstname:</label>
-    <input type="text" name="firstname"><br>
-    <label>Lastname:</label>
-    <input type="text" name="lastname"><br>
-    <label>Password:</label>
-    <input type="password" name="password"><br>
-    <label>Email:</label>
-    <input type="email" name="email"><br>
-    <input type="submit" name="submit" value="Submit">
-
-
-
-</form>
-
+    <div class="footer">
+        <p>&copy; 2024 CRUD Dashboard System. All rights reserved.</p>
+    </div>
 </body>
-</head>
-
-
+</html>
